@@ -9,11 +9,10 @@ part 'project.g.dart';
 class Project {
   @Id()
   int? id;
-
   late String name;
   @ProjectStatusConverter()
   late ProjectStatus status;
-
   late int estimate;
   final tasks = IsarLinks<ProjectTask>();
+  late String userId;
 }

@@ -15,9 +15,9 @@ extension GetProjectCollection on Isar {
 const ProjectSchema = CollectionSchema(
   name: 'Project',
   schema:
-      '{"name":"Project","idName":"id","properties":[{"name":"estimate","type":"Long"},{"name":"name","type":"String"},{"name":"status","type":"Long"}],"indexes":[],"links":[{"name":"tasks","target":"ProjectTask"}]}',
+      '{"name":"Project","idName":"id","properties":[{"name":"estimate","type":"Long"},{"name":"name","type":"String"},{"name":"status","type":"Long"},{"name":"userId","type":"String"}],"indexes":[],"links":[{"name":"tasks","target":"ProjectTask"}]}',
   idName: 'id',
-  propertyIds: {'estimate': 0, 'name': 1, 'status': 2},
+  propertyIds: {'estimate': 0, 'name': 1, 'status': 2, 'userId': 3},
   listProperties: {},
   indexIds: {},
   indexValueTypes: {},
@@ -69,6 +69,9 @@ void _projectSerializeNative(
   dynamicSize += (_name.length) as int;
   final value2 = _projectProjectStatusConverter.toIsar(object.status);
   final _status = value2;
+  final value3 = object.userId;
+  final _userId = IsarBinaryWriter.utf8Encoder.convert(value3);
+  dynamicSize += (_userId.length) as int;
   final size = staticSize + dynamicSize;
 
   rawObj.buffer = alloc(size);
@@ -78,6 +81,7 @@ void _projectSerializeNative(
   writer.writeLong(offsets[0], _estimate);
   writer.writeBytes(offsets[1], _name);
   writer.writeLong(offsets[2], _status);
+  writer.writeBytes(offsets[3], _userId);
 }
 
 Project _projectDeserializeNative(IsarCollection<Project> collection, int id,
@@ -88,6 +92,7 @@ Project _projectDeserializeNative(IsarCollection<Project> collection, int id,
   object.name = reader.readString(offsets[1]);
   object.status =
       _projectProjectStatusConverter.fromIsar(reader.readLong(offsets[2]));
+  object.userId = reader.readString(offsets[3]);
   _projectAttachLinks(collection, id, object);
   return object;
 }
@@ -104,6 +109,8 @@ P _projectDeserializePropNative<P>(
     case 2:
       return (_projectProjectStatusConverter.fromIsar(reader.readLong(offset)))
           as P;
+    case 3:
+      return (reader.readString(offset)) as P;
     default:
       throw 'Illegal propertyIndex';
   }
@@ -117,6 +124,7 @@ dynamic _projectSerializeWeb(
   IsarNative.jsObjectSet(jsObj, 'name', object.name);
   IsarNative.jsObjectSet(
       jsObj, 'status', _projectProjectStatusConverter.toIsar(object.status));
+  IsarNative.jsObjectSet(jsObj, 'userId', object.userId);
   return jsObj;
 }
 
@@ -129,6 +137,7 @@ Project _projectDeserializeWeb(
   object.name = IsarNative.jsObjectGet(jsObj, 'name') ?? '';
   object.status = _projectProjectStatusConverter.fromIsar(
       IsarNative.jsObjectGet(jsObj, 'status') ?? double.negativeInfinity);
+  object.userId = IsarNative.jsObjectGet(jsObj, 'userId') ?? '';
   _projectAttachLinks(collection, IsarNative.jsObjectGet(jsObj, 'id'), object);
   return object;
 }
@@ -146,6 +155,8 @@ P _projectDeserializePropWeb<P>(Object jsObj, String propertyName) {
       return (_projectProjectStatusConverter.fromIsar(
           IsarNative.jsObjectGet(jsObj, 'status') ??
               double.negativeInfinity)) as P;
+    case 'userId':
+      return (IsarNative.jsObjectGet(jsObj, 'userId') ?? '') as P;
     default:
       throw 'Illegal propertyName';
   }
@@ -471,6 +482,109 @@ extension ProjectQueryFilter
       includeUpper: includeUpper,
     ));
   }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'userId',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdGreaterThan(
+    String value, {
+    bool caseSensitive = true,
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'userId',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdLessThan(
+    String value, {
+    bool caseSensitive = true,
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'userId',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdBetween(
+    String lower,
+    String upper, {
+    bool caseSensitive = true,
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'userId',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'userId',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'userId',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'userId',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> userIdMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'userId',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
+  }
 }
 
 extension ProjectQueryLinks
@@ -517,6 +631,14 @@ extension ProjectQueryWhereSortBy on QueryBuilder<Project, Project, QSortBy> {
   QueryBuilder<Project, Project, QAfterSortBy> sortByStatusDesc() {
     return addSortByInternal('status', Sort.desc);
   }
+
+  QueryBuilder<Project, Project, QAfterSortBy> sortByUserId() {
+    return addSortByInternal('userId', Sort.asc);
+  }
+
+  QueryBuilder<Project, Project, QAfterSortBy> sortByUserIdDesc() {
+    return addSortByInternal('userId', Sort.desc);
+  }
 }
 
 extension ProjectQueryWhereSortThenBy
@@ -552,6 +674,14 @@ extension ProjectQueryWhereSortThenBy
   QueryBuilder<Project, Project, QAfterSortBy> thenByStatusDesc() {
     return addSortByInternal('status', Sort.desc);
   }
+
+  QueryBuilder<Project, Project, QAfterSortBy> thenByUserId() {
+    return addSortByInternal('userId', Sort.asc);
+  }
+
+  QueryBuilder<Project, Project, QAfterSortBy> thenByUserIdDesc() {
+    return addSortByInternal('userId', Sort.desc);
+  }
 }
 
 extension ProjectQueryWhereDistinct
@@ -572,6 +702,11 @@ extension ProjectQueryWhereDistinct
   QueryBuilder<Project, Project, QDistinct> distinctByStatus() {
     return addDistinctByInternal('status');
   }
+
+  QueryBuilder<Project, Project, QDistinct> distinctByUserId(
+      {bool caseSensitive = true}) {
+    return addDistinctByInternal('userId', caseSensitive: caseSensitive);
+  }
 }
 
 extension ProjectQueryProperty
@@ -590,5 +725,9 @@ extension ProjectQueryProperty
 
   QueryBuilder<Project, ProjectStatus, QQueryOperations> statusProperty() {
     return addPropertyNameInternal('status');
+  }
+
+  QueryBuilder<Project, String, QQueryOperations> userIdProperty() {
+    return addPropertyNameInternal('userId');
   }
 }

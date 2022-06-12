@@ -18,14 +18,15 @@ class ProjectServiceImpl implements ProjectService {
       ..id = projectModel.id
       ..name = projectModel.name
       ..status = projectModel.status
-      ..estimate = projectModel.estimate;
+      ..estimate = projectModel.estimate
+      ..userId = projectModel.userId;
 
     await _projectRepository.register(project);
   }
 
   @override
-  Future<List<ProjectModel>> findByStatus(ProjectStatus status) async {
-    final projects = await _projectRepository.findByStatus(status);
+  Future<List<ProjectModel>> findByStatus(ProjectStatus status, {String? userId}) async {
+    final projects = await _projectRepository.findByStatus(status, userId);
     return projects.map(ProjectModel.fromEntity).toList();
   }
 

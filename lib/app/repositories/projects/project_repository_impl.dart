@@ -27,10 +27,13 @@ class ProjectRepositoryImpl implements ProjectRepository {
   }
 
   @override
-  Future<List<Project>> findByStatus(ProjectStatus status) async {
+  Future<List<Project>> findByStatus(ProjectStatus status, String? userId) async {
     final connection = await _database.openConnection();
-    final projects = await connection.projects.filter().statusEqualTo(status).findAll();
-    return projects;
+    final projectFilter = connection.projects.filter().statusEqualTo(status);
+    if (userId != null) {
+      return await projectFilter.and().userIdEqualTo(userId).findAll();
+    }
+    return await projectFilter.findAll();
   }
 
   @override

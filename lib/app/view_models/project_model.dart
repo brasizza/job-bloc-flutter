@@ -11,13 +11,9 @@ class ProjectModel {
   final ProjectStatus status;
 
   final List<ProjectTaskModel> task;
-  ProjectModel({
-    this.id,
-    required this.name,
-    required this.estimate,
-    required this.status,
-    required this.task,
-  });
+
+  final String userId;
+  ProjectModel({this.id, required this.name, required this.estimate, required this.status, required this.task, required this.userId});
 
   factory ProjectModel.fromEntity(Project project) {
     project.tasks.loadSync();
@@ -26,6 +22,7 @@ class ProjectModel {
       name: project.name,
       estimate: project.estimate,
       status: project.status,
+      userId: project.userId,
       task: project.tasks.map(ProjectTaskModel.fromEntity).toList(),
     );
   }
