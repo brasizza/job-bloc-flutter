@@ -8,6 +8,7 @@ import 'package:blocapp/app/modules/project/detail/widgets/project_task_tile.dar
 import 'package:blocapp/app/view_models/project_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:asuka/asuka.dart' as asuka;
 
 class ProjectDetailPage extends StatelessWidget {
   const ProjectDetailPage({required this.controller, Key? key}) : super(key: key);
@@ -69,7 +70,31 @@ class ProjectDetailPage extends StatelessWidget {
               ),
               ...projectModel.task
                   .map(
-                    (task) => ProjectTaskTile(task: task),
+                    (task) => Dismissible(
+                        key: UniqueKey(),
+                        confirmDismiss: (DismissDirection direction) async {
+                          return await asuka.showDialog(
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Remover task'),
+                                content: Text('Você realmente quer remover a task ${task.name}?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () async {
+                                        Navigator.of(context).pop(true);
+                                        controller.deleteTask(task);
+                                      },
+                                      child: const Text('Remover')),
+                                  TextButton(
+                                    onPressed: () => Navigator.of(context).pop(false),
+                                    child: const Text('Cancelar'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: ProjectTaskTile(task: task)),
                   )
                   .toList(),
             ],

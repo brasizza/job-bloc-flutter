@@ -36,6 +36,8 @@ class _TaskPageState extends State<TaskPage> {
           Navigator.pop(context);
         } else if (state == TaskStatus.failure) {
           AsukaSnackbar.alert('Erro ao salvar task').show();
+        } else if (state == TaskStatus.hourExceed) {
+          AsukaSnackbar.alert('As horas preenchidas excedem a estimativa do projeto!').show();
         }
       },
       child: Scaffold(

@@ -68,4 +68,15 @@ class ProjectRepositoryImpl implements ProjectRepository {
       throw Failure('Erro ao finalizar projeto');
     }
   }
+
+  @override
+  Future<void> deleteTask(int? taskId) async {
+    try {
+      final connection = await _database.openConnection();
+      await connection.writeTxn((isar) => connection.projectTasks.delete(taskId!));
+    } on IsarError catch (e, s) {
+      log(e.message, error: e, stackTrace: s);
+      throw Failure('Erro ao finalizar projeto');
+    }
+  }
 }

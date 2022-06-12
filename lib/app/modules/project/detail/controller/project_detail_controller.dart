@@ -1,5 +1,6 @@
 import 'package:blocapp/app/services/projects/project_service.dart';
 import 'package:blocapp/app/view_models/project_model.dart';
+import 'package:blocapp/app/view_models/project_task_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,6 +30,17 @@ class ProjectDetailController extends Cubit<ProjectDetailState> {
       final projectId = state.projectModel!.id!;
       await _projectService.finish(projectId);
 
+      updateProject();
+    } catch (e) {
+      emit(state.copyWith(status: ProjectDetailStatus.failure));
+    }
+  }
+
+  void deleteTask(ProjectTaskModel task) async {
+    try {
+      emit(state.copyWith(status: ProjectDetailStatus.loading));
+      final taskId = task.id;
+      await _projectService.deleteTask(taskId);
       updateProject();
     } catch (e) {
       emit(state.copyWith(status: ProjectDetailStatus.failure));

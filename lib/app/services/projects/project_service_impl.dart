@@ -48,4 +48,7 @@ class ProjectServiceImpl implements ProjectService {
 
   @override
   Future<void> finish(int projectId) async => _projectRepository.finish(projectId);
+
+  @override
+  Future<void> deleteTask(int? taskId) async => _projectRepository.deleteTask(taskId);
 }
