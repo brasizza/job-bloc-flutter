@@ -1,4 +1,5 @@
 import 'package:blocapp/app/core/ui/job_timer_icons_icons.dart';
+import 'package:blocapp/app/modules/home/controller/home_controller.dart';
 import 'package:blocapp/app/view_models/project_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,8 +11,10 @@ class ProjectListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          Modular.to.pushNamed('/project/detail', arguments: projectModel),
+      onTap: () async {
+        await Modular.to.pushNamed('/project/detail', arguments: projectModel);
+        Modular.get<HomeController>().updateList();
+      },
       child: Container(
         constraints: const BoxConstraints(maxHeight: 90),
         margin: const EdgeInsets.all(10),
@@ -46,8 +49,7 @@ class _ProjectName extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(projectModel.name),
-          Icon(JobTimerIcons.angle_double_right,
-              color: Theme.of(context).primaryColor, size: 20),
+          Icon(JobTimerIcons.angle_double_right, color: Theme.of(context).primaryColor, size: 20),
         ],
       ),
     );
@@ -60,8 +62,7 @@ class _ProjectProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalTaks = projectModel.task.fold<int>(
-        0, ((previousValue, task) => previousValue += task.duration));
+    final totalTaks = projectModel.task.fold<int>(0, ((previousValue, task) => previousValue += task.duration));
     double percent = 0.0;
 
     if (totalTaks > 0) {

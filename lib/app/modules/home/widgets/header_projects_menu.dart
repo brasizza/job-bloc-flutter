@@ -11,8 +11,7 @@ class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
     required this.controller,
   });
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return LayoutBuilder(builder: ((context, constraints) {
       return Container(
         height: constraints.maxHeight,
@@ -21,8 +20,7 @@ class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(
-              width: constraints.maxWidth * .5,
+            Expanded(
               child: DropdownButtonFormField<ProjectStatus>(
                 value: ProjectStatus.emAndamento,
                 items: ProjectStatus.values
@@ -45,13 +43,16 @@ class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
                 ),
               ),
             ),
-            ElevatedButton.icon(
-              onPressed: () async {
-                await Modular.to.pushNamed('/project/register');
-                controller.loadProject();
-              },
-              label: Text('Novo projeto'),
-              icon: Icon(Icons.add),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: ElevatedButton.icon(
+                onPressed: () async {
+                  await Modular.to.pushNamed('/project/register');
+                  controller.loadProject();
+                },
+                label: Text('Novo projeto'),
+                icon: Icon(Icons.add),
+              ),
             )
           ],
         ),

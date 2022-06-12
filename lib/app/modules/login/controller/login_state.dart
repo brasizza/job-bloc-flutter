@@ -5,8 +5,6 @@ part of 'login_controller.dart';
 enum LoginStatus { initial, loading, failure }
 
 class LoginState extends Equatable {
-  @override
-  // TODO: implement props
   final LoginStatus status;
   final String? errorMessage;
 

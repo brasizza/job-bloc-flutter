@@ -44,9 +44,7 @@ class HomePage extends StatelessWidget {
                 expandedHeight: 100,
                 toolbarHeight: 100,
                 centerTitle: true,
-                shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(15))),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(15))),
               ),
               SliverPersistentHeader(
                 delegate: HeaderProjectsMenu(controller: controller),
@@ -63,8 +61,7 @@ class HomePage extends StatelessWidget {
                     sliver: const SliverToBoxAdapter(
                         child: SizedBox(
                       height: 50,
-                      child:
-                          Center(child: CircularProgressIndicator.adaptive()),
+                      child: Center(child: CircularProgressIndicator.adaptive()),
                     )),
                   );
                 },

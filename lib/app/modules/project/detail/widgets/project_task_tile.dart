@@ -1,7 +1,9 @@
+import 'package:blocapp/app/view_models/project_task_model.dart';
 import 'package:flutter/material.dart';
 
 class ProjectTaskTile extends StatelessWidget {
-  const ProjectTaskTile({Key? key}) : super(key: key);
+  final ProjectTaskModel task;
+  const ProjectTaskTile({Key? key, required this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +14,15 @@ class ProjectTaskTile extends StatelessWidget {
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Nome da task'),
-            RichText(
-                text: TextSpan(children: [
-              TextSpan(text: 'Duração', style: TextStyle(color: Colors.grey)),
-              TextSpan(text: '    '),
-              TextSpan(
-                  text: '4h',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black)),
-            ]))
-          ]),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(task.name),
+        RichText(
+            text: TextSpan(children: [
+          TextSpan(text: 'Duração', style: TextStyle(color: Colors.grey)),
+          TextSpan(text: '    '),
+          TextSpan(text: '${task.duration}h', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+        ]))
+      ]),
     );
   }
 }

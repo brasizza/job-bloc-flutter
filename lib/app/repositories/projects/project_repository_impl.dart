@@ -4,6 +4,7 @@ import 'package:blocapp/app/core/database/database.dart';
 import 'package:blocapp/app/core/exceptions/failure.dart';
 import 'package:blocapp/app/entities/project.dart';
 import 'package:blocapp/app/entities/project_status.dart';
+import 'package:blocapp/app/entities/project_task.dart';
 import 'package:isar/isar.dart';
 
 import './project_repository.dart';
@@ -28,8 +29,40 @@ class ProjectRepositoryImpl implements ProjectRepository {
   @override
   Future<List<Project>> findByStatus(ProjectStatus status) async {
     final connection = await _database.openConnection();
-    final projects =
-        await connection.projects.filter().statusEqualTo(status).findAll();
+    final projects = await connection.projects.filter().statusEqualTo(status).findAll();
     return projects;
+  }
+
+  @override
+  Future<Project> addTask(int projectId, ProjectTask task) async {
+    final connection = await _database.openConnection();
+    final project = await findById(projectId);
+    project.tasks.add(task);
+    await connection.writeTxn((isar) => project.tasks.save());
+    return project;
+  }
+
+  @override
+  Future<Project> findById(int projectId) async {
+    final connection = await _database.openConnection();
+    final project = await connection.projects.get(projectId);
+    if (project == null) {
+      throw Failure('Projeto não encontrado');
+    }
+    return project;
+  }
+
+  @override
+  Future<void> finish(int projectId) async {
+    try {
+      final connection = await _database.openConnection();
+      final project = await findById(projectId);
+      project.status = ProjectStatus.finalizado;
+
+      await connection.writeTxn((isar) => connection.projects.put(project, saveLinks: true));
+    } on IsarError catch (e, s) {
+      log(e.message, error: e, stackTrace: s);
+      throw Failure('Erro ao finalizar projeto');
+    }
   }
 }

@@ -22,9 +22,11 @@ class ProjectModel {
   factory ProjectModel.fromEntity(Project project) {
     project.tasks.loadSync();
     return ProjectModel(
-        name: project.name,
-        estimate: project.estimate,
-        status: project.status,
-        task: project.tasks.map(ProjectTaskModel.fromEntity).toList());
+      id: project.id,
+      name: project.name,
+      estimate: project.estimate,
+      status: project.status,
+      task: project.tasks.map(ProjectTaskModel.fromEntity).toList(),
+    );
   }
 }
