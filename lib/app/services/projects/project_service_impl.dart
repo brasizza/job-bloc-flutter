@@ -15,7 +15,7 @@ class ProjectServiceImpl implements ProjectService {
   @override
   Future<void> register(ProjectModel projectModel) async {
     final project = Project()
-      ..id = projectModel.id
+      ..id = projectModel.id!
       ..name = projectModel.name
       ..status = projectModel.status
       ..estimate = projectModel.estimate

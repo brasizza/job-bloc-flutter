@@ -44,50 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAcDlX5P-HnktqTCXSBY_R8HpRa9z7QRcs',
-    appId: '1:442208404444:web:6cbd77fd09b67b1c308519',
-    messagingSenderId: '442208404444',
-    projectId: 'cuidapet-8e9d5',
-    authDomain: 'cuidapet-8e9d5.firebaseapp.com',
-    databaseURL: 'https://cuidapet-8e9d5.firebaseio.com',
-    storageBucket: 'cuidapet-8e9d5.appspot.com',
-    measurementId: 'G-LEYSHCSNR5',
+    apiKey: 'AIzaSyBhQQoEF8akWH6LSsTnEBNO5FdBgFkhbt0',
+    appId: '1:76375850392:web:446cceb80a093ace4a3fed',
+    messagingSenderId: '76375850392',
+    projectId: 'diario-de-tarefas',
+    authDomain: 'diario-de-tarefas.firebaseapp.com',
+    storageBucket: 'diario-de-tarefas.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDfAflpSfjniyMmR8itD1VUanXdv-fKpDE',
-    appId: '1:442208404444:android:c63a9eb82c1db370308519',
-    messagingSenderId: '442208404444',
-    projectId: 'cuidapet-8e9d5',
-    databaseURL: 'https://cuidapet-8e9d5.firebaseio.com',
-    storageBucket: 'cuidapet-8e9d5.appspot.com',
+    apiKey: 'AIzaSyCXpdBspEo2lL7eM_Iv1MmMHgxh7rlBtiA',
+    appId: '1:76375850392:android:24c197802993de594a3fed',
+    messagingSenderId: '76375850392',
+    projectId: 'diario-de-tarefas',
+    storageBucket: 'diario-de-tarefas.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBKG4PE9orDMdfTta5Lgtd5sDEYQDwJ7pI',
-    appId: '1:442208404444:ios:5ee7f6cc4e047974308519',
-    messagingSenderId: '442208404444',
-    projectId: 'cuidapet-8e9d5',
-    databaseURL: 'https://cuidapet-8e9d5.firebaseio.com',
-    storageBucket: 'cuidapet-8e9d5.appspot.com',
-    androidClientId:
-        '442208404444-re8co00keg5s7c37rug8jjnf5e504mbl.apps.googleusercontent.com',
-    iosClientId:
-        '442208404444-aintt7041c7uol1q1pu4r2di789pbcjq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDwv_cZPJoCQdM_m3-68n6qHuUeF4ksm3A',
+    appId: '1:76375850392:ios:8c3d26e9f183e2394a3fed',
+    messagingSenderId: '76375850392',
+    projectId: 'diario-de-tarefas',
+    storageBucket: 'diario-de-tarefas.appspot.com',
+    iosClientId: '76375850392-c2hhsctmgb2230dbgtv83ifflogm6de4.apps.googleusercontent.com',
     iosBundleId: 'com.brasizza.marcus.blocapp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBKG4PE9orDMdfTta5Lgtd5sDEYQDwJ7pI',
-    appId: '1:442208404444:ios:5ee7f6cc4e047974308519',
-    messagingSenderId: '442208404444',
-    projectId: 'cuidapet-8e9d5',
-    databaseURL: 'https://cuidapet-8e9d5.firebaseio.com',
-    storageBucket: 'cuidapet-8e9d5.appspot.com',
-    androidClientId:
-        '442208404444-re8co00keg5s7c37rug8jjnf5e504mbl.apps.googleusercontent.com',
-    iosClientId:
-        '442208404444-aintt7041c7uol1q1pu4r2di789pbcjq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDwv_cZPJoCQdM_m3-68n6qHuUeF4ksm3A',
+    appId: '1:76375850392:ios:8c3d26e9f183e2394a3fed',
+    messagingSenderId: '76375850392',
+    projectId: 'diario-de-tarefas',
+    storageBucket: 'diario-de-tarefas.appspot.com',
+    iosClientId: '76375850392-c2hhsctmgb2230dbgtv83ifflogm6de4.apps.googleusercontent.com',
     iosBundleId: 'com.brasizza.marcus.blocapp',
   );
 }

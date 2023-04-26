@@ -1,5 +1,4 @@
 import 'package:blocapp/app/entities/project_status.dart';
-import 'package:blocapp/app/modules/home/controller/home_controller.dart';
 import 'package:blocapp/app/modules/project/detail/controller/project_detail_controller.dart';
 import 'package:blocapp/app/view_models/project_model.dart';
 import 'package:flutter/material.dart';

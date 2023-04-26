@@ -18,9 +18,9 @@ class ProjectTaskTile extends StatelessWidget {
         Text(task.name),
         RichText(
             text: TextSpan(children: [
-          TextSpan(text: 'Duração', style: TextStyle(color: Colors.grey)),
-          TextSpan(text: '    '),
-          TextSpan(text: '${task.duration}h', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          const TextSpan(text: 'Duração', style: TextStyle(color: Colors.grey)),
+          const TextSpan(text: '    '),
+          TextSpan(text: '${task.duration}h', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
         ]))
       ]),
     );

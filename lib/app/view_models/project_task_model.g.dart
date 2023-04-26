@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'project_task.dart';
+part of 'project_task_model.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,46 +9,41 @@ part of 'project_task.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetProjectTaskCollection on Isar {
-  IsarCollection<ProjectTask> get projectTasks => this.collection();
+extension GetProjectTaskModelCollection on Isar {
+  IsarCollection<ProjectTaskModel> get projectTaskModels => this.collection();
 }
 
-const ProjectTaskSchema = CollectionSchema(
-  name: r'ProjectTask',
-  id: -2473513088004128786,
+const ProjectTaskModelSchema = CollectionSchema(
+  name: r'ProjectTaskModel',
+  id: -8141570975220876862,
   properties: {
-    r'created': PropertySchema(
-      id: 0,
-      name: r'created',
-      type: IsarType.dateTime,
-    ),
     r'duration': PropertySchema(
-      id: 1,
+      id: 0,
       name: r'duration',
       type: IsarType.long,
     ),
     r'name': PropertySchema(
-      id: 2,
+      id: 1,
       name: r'name',
       type: IsarType.string,
     )
   },
-  estimateSize: _projectTaskEstimateSize,
-  serialize: _projectTaskSerialize,
-  deserialize: _projectTaskDeserialize,
-  deserializeProp: _projectTaskDeserializeProp,
+  estimateSize: _projectTaskModelEstimateSize,
+  serialize: _projectTaskModelSerialize,
+  deserialize: _projectTaskModelDeserialize,
+  deserializeProp: _projectTaskModelDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _projectTaskGetId,
-  getLinks: _projectTaskGetLinks,
-  attach: _projectTaskAttach,
+  getId: _projectTaskModelGetId,
+  getLinks: _projectTaskModelGetLinks,
+  attach: _projectTaskModelAttach,
   version: '3.1.0+1',
 );
 
-int _projectTaskEstimateSize(
-  ProjectTask object,
+int _projectTaskModelEstimateSize(
+  ProjectTaskModel object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -57,32 +52,31 @@ int _projectTaskEstimateSize(
   return bytesCount;
 }
 
-void _projectTaskSerialize(
-  ProjectTask object,
+void _projectTaskModelSerialize(
+  ProjectTaskModel object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeDateTime(offsets[0], object.created);
-  writer.writeLong(offsets[1], object.duration);
-  writer.writeString(offsets[2], object.name);
+  writer.writeLong(offsets[0], object.duration);
+  writer.writeString(offsets[1], object.name);
 }
 
-ProjectTask _projectTaskDeserialize(
+ProjectTaskModel _projectTaskModelDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = ProjectTask();
-  object.created = reader.readDateTime(offsets[0]);
-  object.duration = reader.readLong(offsets[1]);
-  object.id = id;
-  object.name = reader.readString(offsets[2]);
+  final object = ProjectTaskModel(
+    duration: reader.readLong(offsets[0]),
+    id: id,
+    name: reader.readString(offsets[1]),
+  );
   return object;
 }
 
-P _projectTaskDeserializeProp<P>(
+P _projectTaskModelDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -90,41 +84,40 @@ P _projectTaskDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readDateTime(offset)) as P;
-    case 1:
       return (reader.readLong(offset)) as P;
-    case 2:
+    case 1:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-Id _projectTaskGetId(ProjectTask object) {
-  return object.id;
+Id _projectTaskModelGetId(ProjectTaskModel object) {
+  return object.id ?? Isar.autoIncrement;
 }
 
-List<IsarLinkBase<dynamic>> _projectTaskGetLinks(ProjectTask object) {
+List<IsarLinkBase<dynamic>> _projectTaskModelGetLinks(ProjectTaskModel object) {
   return [];
 }
 
-void _projectTaskAttach(
-    IsarCollection<dynamic> col, Id id, ProjectTask object) {
+void _projectTaskModelAttach(
+    IsarCollection<dynamic> col, Id id, ProjectTaskModel object) {
   object.id = id;
 }
 
-extension ProjectTaskQueryWhereSort
-    on QueryBuilder<ProjectTask, ProjectTask, QWhere> {
-  QueryBuilder<ProjectTask, ProjectTask, QAfterWhere> anyId() {
+extension ProjectTaskModelQueryWhereSort
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QWhere> {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension ProjectTaskQueryWhere
-    on QueryBuilder<ProjectTask, ProjectTask, QWhereClause> {
-  QueryBuilder<ProjectTask, ProjectTask, QAfterWhereClause> idEqualTo(Id id) {
+extension ProjectTaskModelQueryWhere
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QWhereClause> {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterWhereClause> idEqualTo(
+      Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -133,8 +126,8 @@ extension ProjectTaskQueryWhere
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterWhereClause> idNotEqualTo(
-      Id id) {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterWhereClause>
+      idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -156,8 +149,8 @@ extension ProjectTaskQueryWhere
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterWhereClause> idGreaterThan(Id id,
-      {bool include = false}) {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterWhereClause>
+      idGreaterThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -165,8 +158,8 @@ extension ProjectTaskQueryWhere
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterWhereClause> idLessThan(Id id,
-      {bool include = false}) {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterWhereClause>
+      idLessThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -174,7 +167,7 @@ extension ProjectTaskQueryWhere
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterWhereClause> idBetween(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -191,64 +184,10 @@ extension ProjectTaskQueryWhere
   }
 }
 
-extension ProjectTaskQueryFilter
-    on QueryBuilder<ProjectTask, ProjectTask, QFilterCondition> {
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> createdEqualTo(
-      DateTime value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'created',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition>
-      createdGreaterThan(
-    DateTime value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'created',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> createdLessThan(
-    DateTime value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'created',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> createdBetween(
-    DateTime lower,
-    DateTime upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'created',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> durationEqualTo(
-      int value) {
+extension ProjectTaskModelQueryFilter
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QFilterCondition> {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      durationEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'duration',
@@ -257,7 +196,7 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition>
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
       durationGreaterThan(
     int value, {
     bool include = false,
@@ -271,7 +210,7 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition>
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
       durationLessThan(
     int value, {
     bool include = false,
@@ -285,7 +224,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> durationBetween(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      durationBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -302,8 +242,26 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> idEqualTo(
-      Id value) {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      idIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      idIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -312,8 +270,9 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> idGreaterThan(
-    Id value, {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      idGreaterThan(
+    Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -325,8 +284,9 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> idLessThan(
-    Id value, {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      idLessThan(
+    Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -338,9 +298,10 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> idBetween(
-    Id lower,
-    Id upper, {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      idBetween(
+    Id? lower,
+    Id? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -355,7 +316,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameEqualTo(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -368,7 +330,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameGreaterThan(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -383,7 +346,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameLessThan(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -398,7 +362,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameBetween(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -417,7 +382,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameStartsWith(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -430,7 +396,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameEndsWith(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -443,9 +410,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'name',
@@ -455,9 +421,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'name',
@@ -467,7 +432,8 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition> nameIsEmpty() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
+      nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'name',
@@ -476,7 +442,7 @@ extension ProjectTaskQueryFilter
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterFilterCondition>
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterFilterCondition>
       nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -487,117 +453,95 @@ extension ProjectTaskQueryFilter
   }
 }
 
-extension ProjectTaskQueryObject
-    on QueryBuilder<ProjectTask, ProjectTask, QFilterCondition> {}
+extension ProjectTaskModelQueryObject
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QFilterCondition> {}
 
-extension ProjectTaskQueryLinks
-    on QueryBuilder<ProjectTask, ProjectTask, QFilterCondition> {}
+extension ProjectTaskModelQueryLinks
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QFilterCondition> {}
 
-extension ProjectTaskQuerySortBy
-    on QueryBuilder<ProjectTask, ProjectTask, QSortBy> {
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> sortByCreated() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'created', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> sortByCreatedDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'created', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> sortByDuration() {
+extension ProjectTaskModelQuerySortBy
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QSortBy> {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy>
+      sortByDuration() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'duration', Sort.asc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> sortByDurationDesc() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy>
+      sortByDurationDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'duration', Sort.desc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> sortByName() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> sortByNameDesc() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy>
+      sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 }
 
-extension ProjectTaskQuerySortThenBy
-    on QueryBuilder<ProjectTask, ProjectTask, QSortThenBy> {
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenByCreated() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'created', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenByCreatedDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'created', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenByDuration() {
+extension ProjectTaskModelQuerySortThenBy
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QSortThenBy> {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy>
+      thenByDuration() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'duration', Sort.asc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenByDurationDesc() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy>
+      thenByDurationDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'duration', Sort.desc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenById() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy>
+      thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenByName() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QAfterSortBy> thenByNameDesc() {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QAfterSortBy>
+      thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 }
 
-extension ProjectTaskQueryWhereDistinct
-    on QueryBuilder<ProjectTask, ProjectTask, QDistinct> {
-  QueryBuilder<ProjectTask, ProjectTask, QDistinct> distinctByCreated() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'created');
-    });
-  }
-
-  QueryBuilder<ProjectTask, ProjectTask, QDistinct> distinctByDuration() {
+extension ProjectTaskModelQueryWhereDistinct
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QDistinct> {
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QDistinct>
+      distinctByDuration() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'duration');
     });
   }
 
-  QueryBuilder<ProjectTask, ProjectTask, QDistinct> distinctByName(
+  QueryBuilder<ProjectTaskModel, ProjectTaskModel, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
@@ -605,27 +549,21 @@ extension ProjectTaskQueryWhereDistinct
   }
 }
 
-extension ProjectTaskQueryProperty
-    on QueryBuilder<ProjectTask, ProjectTask, QQueryProperty> {
-  QueryBuilder<ProjectTask, int, QQueryOperations> idProperty() {
+extension ProjectTaskModelQueryProperty
+    on QueryBuilder<ProjectTaskModel, ProjectTaskModel, QQueryProperty> {
+  QueryBuilder<ProjectTaskModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<ProjectTask, DateTime, QQueryOperations> createdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'created');
-    });
-  }
-
-  QueryBuilder<ProjectTask, int, QQueryOperations> durationProperty() {
+  QueryBuilder<ProjectTaskModel, int, QQueryOperations> durationProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'duration');
     });
   }
 
-  QueryBuilder<ProjectTask, String, QQueryOperations> nameProperty() {
+  QueryBuilder<ProjectTaskModel, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });

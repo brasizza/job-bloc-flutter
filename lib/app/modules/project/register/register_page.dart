@@ -1,6 +1,5 @@
 import 'package:asuka/asuka.dart';
 import 'package:blocapp/app/core/ui/button_with_loader.dart';
-import 'package:blocapp/app/modules/login/controller/login_controller.dart';
 import 'package:blocapp/app/modules/project/register/controller/project_register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,8 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextFormField(
                     controller: _nameEC,
                     validator: Validatorless.required('Nome Obrigatorio'),
-                    decoration:
-                        const InputDecoration(label: Text("Nome do projeto")),
+                    decoration: const InputDecoration(label: Text("Nome do projeto")),
                   ),
                   const SizedBox(
                     height: 10,
@@ -73,12 +71,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextFormField(
                     controller: _estimateEC,
                     keyboardType: TextInputType.number,
-                    validator: Validatorless.multiple([
-                      Validatorless.required('Estimativa obrigatória'),
-                      Validatorless.number('Permitido somente número')
-                    ]),
-                    decoration: const InputDecoration(
-                        label: Text("Estimativa de horas")),
+                    validator: Validatorless.multiple([Validatorless.required('Estimativa obrigatória'), Validatorless.number('Permitido somente número')]),
+                    decoration: const InputDecoration(label: Text("Estimativa de horas")),
                   ),
                   const SizedBox(
                     height: 10,
@@ -100,14 +94,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   SizedBox(
                       width: MediaQuery.of(context).size.width,
                       height: 49,
-                      child: ButtonWithLoader<ProjectRegisterController,
-                          ProjectRegisterStatus>(
-                        selector: ((state) =>
-                            state == ProjectRegisterStatus.loading),
+                      child: ButtonWithLoader<ProjectRegisterController, ProjectRegisterStatus>(
+                        selector: ((state) => state == ProjectRegisterStatus.loading),
                         bloc: widget.controller,
                         onPressed: () async {
-                          final formValid =
-                              _formKey.currentState?.validate() ?? false;
+                          final formValid = _formKey.currentState?.validate() ?? false;
                           if (formValid) {
                             final name = _nameEC.text;
                             final estimate = int.parse(_estimateEC.text);

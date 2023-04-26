@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:blocapp/app/entities/project_task.dart';
 import 'package:blocapp/app/services/projects/project_service.dart';
 import 'package:blocapp/app/view_models/project_model.dart';
 import 'package:blocapp/app/view_models/project_task_model.dart';
@@ -32,6 +31,7 @@ class TaskController extends Cubit<TaskStatus> {
       }
     } catch (e, s) {
       log('Erro ao salvar task', error: e, stackTrace: s);
+      emit(TaskStatus.failure);
     }
   }
 }

@@ -19,7 +19,7 @@ class HomeController extends Cubit<HomeState> {
   Future<void> loadProject() async {
     emit(state.copyWith(status: HomeStatus.loading));
     try {
-      final String userId = FirebaseAuth.instance.currentUser!.uid;
+      final String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
       final projects = await _projectService.findByStatus(state.projectFilter, userId: userId);
       emit(state.copyWith(status: HomeStatus.complete, projects: projects));
     } on Exception catch (e, s) {
@@ -29,7 +29,7 @@ class HomeController extends Cubit<HomeState> {
   }
 
   Future<void> filter(ProjectStatus status) async {
-    final String userId = FirebaseAuth.instance.currentUser!.uid;
+    final String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
 
     emit(
       state.copyWith(

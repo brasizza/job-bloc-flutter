@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                   controller.signIn();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.grey.shade200,
+                  backgroundColor: Colors.grey.shade200,
                 ),
                 child: Image.asset('assets/images/google.png'),
               ),
@@ -58,8 +58,7 @@ class LoginPage extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.only(top: 15.0),
                     child: Center(
-                      child: CircularProgressIndicator.adaptive(
-                          backgroundColor: Colors.white),
+                      child: CircularProgressIndicator.adaptive(backgroundColor: Colors.white),
                     ),
                   ),
                 );

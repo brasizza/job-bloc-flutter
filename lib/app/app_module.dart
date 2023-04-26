@@ -14,17 +14,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
   @override
-  // TODO: implement binds
   List<Bind> get binds => [
         Bind.lazySingleton<AuthService>((i) => AuthServiceImpl()),
         Bind.lazySingleton<Database>((i) => DatabaseImpl()),
-        Bind.lazySingleton<ProjectRepository>(
-            (i) => ProjectRepositoryImpl(database: i())),
-        Bind.lazySingleton<ProjectService>(
-            (i) => ProjectServiceImpl(projectRepository: i())),
+        Bind.lazySingleton<ProjectRepository>((i) => ProjectRepositoryImpl(database: i())),
+        Bind.lazySingleton<ProjectService>((i) => ProjectServiceImpl(projectRepository: i())),
       ];
   @override
-  // TODO: implement routes
   List<ModularRoute> get routes => [
         ChildRoute('/', child: ((context, args) => const SplashPage())),
         ModuleRoute('/login/', module: LoginModule()),

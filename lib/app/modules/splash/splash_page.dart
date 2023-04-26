@@ -1,5 +1,3 @@
-import 'package:blocapp/app/core/ui/job_timer_icons_icons.dart';
-import 'package:blocapp/app/services/auth/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';

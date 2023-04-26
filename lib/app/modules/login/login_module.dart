@@ -1,6 +1,5 @@
 import 'package:blocapp/app/modules/login/controller/login_controller.dart';
 import 'package:blocapp/app/modules/login/login_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 

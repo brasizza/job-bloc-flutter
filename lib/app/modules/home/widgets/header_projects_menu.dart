@@ -1,9 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-
 import 'package:blocapp/app/entities/project_status.dart';
 import 'package:blocapp/app/modules/home/controller/home_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
   HomeController controller;
@@ -50,8 +49,8 @@ class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
                   await Modular.to.pushNamed('/project/register');
                   controller.loadProject();
                 },
-                label: Text('Novo projeto'),
-                icon: Icon(Icons.add),
+                label: const Text('Novo projeto'),
+                icon: const Icon(Icons.add),
               ),
             )
           ],

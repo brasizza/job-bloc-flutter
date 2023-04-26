@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(ModularApp(
-    child: const AppWidget(),
     module: AppModule(),
+    child: const AppWidget(),
   ));
 }

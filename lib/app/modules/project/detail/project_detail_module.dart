@@ -6,7 +6,6 @@ import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 class ProjectDetailModule extends Module {
   @override
-  // TODO: implement routes
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
@@ -18,7 +17,6 @@ class ProjectDetailModule extends Module {
       ];
 
   @override
-  // TODO: implement binds
   List<Bind> get binds => [
         BlocBind.lazySingleton(
           (i) => ProjectDetailController(projectService: i()),

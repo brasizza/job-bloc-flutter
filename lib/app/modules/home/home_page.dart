@@ -1,17 +1,12 @@
 import 'package:asuka/asuka.dart';
-import 'package:blocapp/app/core/database/database.dart';
-import 'package:blocapp/app/entities/project_status.dart';
 import 'package:blocapp/app/modules/home/controller/home_controller.dart';
 import 'package:blocapp/app/modules/home/widgets/header_projects_menu.dart';
 import 'package:blocapp/app/modules/home/widgets/project_tile.dart';
-import 'package:blocapp/app/modules/login/controller/login_controller.dart';
 import 'package:blocapp/app/services/auth/auth_service.dart';
 import 'package:blocapp/app/view_models/project_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import '../../entities/project.dart';
 
 class HomePage extends StatelessWidget {
   final HomeController controller;
@@ -25,13 +20,12 @@ class HomePage extends StatelessWidget {
         if (state.status == HomeStatus.failure) {
           AsukaSnackbar.alert('Falha ao buscar o projeto').show();
         }
-        // TODO: implement listener
       },
       child: Scaffold(
         drawer: Drawer(
             child: SafeArea(
                 child: ListTile(
-          title: Text('Sair'),
+          title: const Text('Sair'),
           onTap: () async {
             Modular.get<AuthService>().signOut();
           },

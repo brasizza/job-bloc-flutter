@@ -8,7 +8,6 @@ import 'package:blocapp/app/modules/project/detail/widgets/project_task_tile.dar
 import 'package:blocapp/app/view_models/project_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:asuka/asuka.dart' as asuka;
 
 class ProjectDetailPage extends StatelessWidget {
   const ProjectDetailPage({required this.controller, Key? key}) : super(key: key);
@@ -24,10 +23,9 @@ class ProjectDetailPage extends StatelessWidget {
         if (state.status == ProjectDetailStatus.failure) {
           return AsukaSnackbar.alert('Erro interno').show();
         }
-        // TODO: implement listener
       },
       builder: (context, state) {
-        final ProjectModel = state.projectModel;
+        final projectModel = state.projectModel;
 
         switch (state.status) {
           case ProjectDetailStatus.initial:
@@ -39,11 +37,11 @@ class ProjectDetailPage extends StatelessWidget {
               child: CircularProgressIndicator.adaptive(),
             );
           case ProjectDetailStatus.complete:
-            return _buildProjectDetail(context, ProjectModel!);
+            return _buildProjectDetail(context, projectModel!);
 
           case ProjectDetailStatus.failure:
             if (state.projectModel != null) {
-              return _buildProjectDetail(context, ProjectModel!);
+              return _buildProjectDetail(context, projectModel!);
             } else {
               return const Text("Erro ao carregar o projeto");
             }
@@ -73,7 +71,7 @@ class ProjectDetailPage extends StatelessWidget {
                     (task) => Dismissible(
                         key: UniqueKey(),
                         confirmDismiss: (DismissDirection direction) async {
-                          return await asuka.showDialog(
+                          return await Asuka.showDialog(
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: const Text('Remover task'),

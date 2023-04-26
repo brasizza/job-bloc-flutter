@@ -6,7 +6,6 @@ import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 class TaskModule extends Module {
   @override
-  // TODO: implement binds
   List<Bind<Object>> get binds => [BlocBind.lazySingleton((i) => TaskController(projectService: i()))];
 
   @override

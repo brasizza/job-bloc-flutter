@@ -17,8 +17,8 @@ class ProjectRepositoryImpl implements ProjectRepository {
   Future<void> register(Project project) async {
     try {
       final connection = await _database.openConnection();
-      await connection.writeTxn((isar) {
-        return isar.projects.put(project);
+      await connection.writeTxn(() {
+        return connection.projects.put(project);
       });
     } on IsarError catch (e, s) {
       log('Erro ao cadastrar do projeto', error: e, stackTrace: s);
@@ -40,8 +40,11 @@ class ProjectRepositoryImpl implements ProjectRepository {
   Future<Project> addTask(int projectId, ProjectTask task) async {
     final connection = await _database.openConnection();
     final project = await findById(projectId);
-    project.tasks.add(task);
-    await connection.writeTxn((isar) => project.tasks.save());
+    await connection.writeTxn(() async {
+      await connection.projectTasks.put(task);
+      project.tasks.add(task);
+      return project.tasks.save();
+    });
     return project;
   }
 
@@ -62,7 +65,9 @@ class ProjectRepositoryImpl implements ProjectRepository {
       final project = await findById(projectId);
       project.status = ProjectStatus.finalizado;
 
-      await connection.writeTxn((isar) => connection.projects.put(project, saveLinks: true));
+      await connection.writeTxn(() => connection.projects.put(
+            project,
+          ));
     } on IsarError catch (e, s) {
       log(e.message, error: e, stackTrace: s);
       throw Failure('Erro ao finalizar projeto');
@@ -73,7 +78,7 @@ class ProjectRepositoryImpl implements ProjectRepository {
   Future<void> deleteTask(int? taskId) async {
     try {
       final connection = await _database.openConnection();
-      await connection.writeTxn((isar) => connection.projectTasks.delete(taskId!));
+      await connection.writeTxn(() => connection.projectTasks.delete(taskId!));
     } on IsarError catch (e, s) {
       log(e.message, error: e, stackTrace: s);
       throw Failure('Erro ao finalizar projeto');
